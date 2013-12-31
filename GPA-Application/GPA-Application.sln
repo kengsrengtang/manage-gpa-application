@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{FD7519C0-BE01-4F8E-B22E-056FDD887E81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPA-Application", "WebApplication1\GPA-Application.csproj", "{FD7519C0-BE01-4F8E-B22E-056FDD887E81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
