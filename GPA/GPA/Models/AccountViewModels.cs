@@ -43,7 +43,17 @@ namespace GPA.Models
         public bool RememberMe { get; set; }
     }
 
+    /// <summary>
+    /// Binds multiple view model
+    /// </summary>
     public class RegisterViewModel
+    {
+        public RegisterUserViewModel UserViewModel { get; set; }
+        public RegisterUserDetailViewModel UserDetailViewModel { get; set; }
+
+    }
+
+    public class RegisterUserViewModel
     {
         [Required]
         [Display(Name = "User name")]
@@ -59,5 +69,29 @@ namespace GPA.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class RegisterUserDetailViewModel
+    {
+        [Display(Name="Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+
+        [Display(Name = "City")]
+        public string City { get; set; }
+        [Display(Name = "State")]
+        public string State { get; set; }
+        [Display(Name = "Zip")]
+        public string Zip { get; set; }
+
+        [Display(Name = "Status")]
+        public int Status { get; set; }
+
     }
 }
