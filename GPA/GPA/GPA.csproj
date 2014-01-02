@@ -162,53 +162,53 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAL\Utilities\Helper.cs" />
+    <Compile Include="DAL\Manager\CourseManager.cs" />
+    <Compile Include="DAL\Manager\StudentManager.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Course.cs">
-      <DependentUpon>GPAModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Feedback.cs">
-      <DependentUpon>GPAModel.tt</DependentUpon>
+      <DependentUpon>GPADataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GPAModel.Context.cs">
+    <Compile Include="Models\GPADataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GPAModel.Context.tt</DependentUpon>
+      <DependentUpon>GPADataModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GPAModel.cs">
+    <Compile Include="Models\GPADataModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GPAModel.tt</DependentUpon>
+      <DependentUpon>GPADataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GPAModel.Designer.cs">
+    <Compile Include="Models\GPADataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GPAModel.edmx</DependentUpon>
+      <DependentUpon>GPADataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Grade.cs">
-      <DependentUpon>GPAModel.tt</DependentUpon>
+      <DependentUpon>GPADataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Manager\AccountManager.cs" />
+    <Compile Include="DAL\Manager\AccountManager.cs" />
     <Compile Include="Models\Role.cs">
-      <DependentUpon>GPAModel.tt</DependentUpon>
+      <DependentUpon>GPADataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Student_GPA.cs">
-      <DependentUpon>GPAModel.tt</DependentUpon>
+      <DependentUpon>GPADataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Task.cs">
-      <DependentUpon>GPAModel.tt</DependentUpon>
+      <DependentUpon>GPADataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>GPAModel.tt</DependentUpon>
+      <DependentUpon>GPADataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserDetails.cs">
-      <DependentUpon>GPAModel.tt</DependentUpon>
+    <Compile Include="Models\UserDetail.cs">
+      <DependentUpon>GPADataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserRole.cs">
-      <DependentUpon>GPAModel.tt</DependentUpon>
+      <DependentUpon>GPADataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -216,30 +216,30 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\core.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\GPAModel.edmx.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ClassDiagram1.cd" />
-    <EntityDeploy Include="Models\GPAModel.edmx">
+    <EntityDeploy Include="Models\GPADataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GPAModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>GPADataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\GPAModel.edmx.diagram">
-      <DependentUpon>GPAModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\GPAModel.Context.tt">
+    <Content Include="Models\GPADataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>GPAModel.Context.cs</LastGenOutput>
-      <DependentUpon>GPAModel.edmx</DependentUpon>
+      <DependentUpon>GPADataModel.edmx</DependentUpon>
+      <LastGenOutput>GPADataModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\GPAModel.tt">
+    <Content Include="Models\GPADataModel.edmx.diagram">
+      <DependentUpon>GPADataModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\GPADataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>GPAModel.cs</LastGenOutput>
-      <DependentUpon>GPAModel.edmx</DependentUpon>
+      <DependentUpon>GPADataModel.edmx</DependentUpon>
+      <LastGenOutput>GPADataModel.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -278,10 +278,10 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\Role.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Utilities\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
