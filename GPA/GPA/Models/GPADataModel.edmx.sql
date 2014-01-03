@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/02/2014 22:20:50
--- Generated from EDMX file: C:\Users\sreng-kh\Documents\GitHub\manage-gpa-application\GPA\GPA\Models\GPADataModel.edmx
+-- Date Created: 01/03/2014 14:01:36
+-- Generated from EDMX file: C:\Users\ktang\Documents\GitHub\manage-gpa-application\GPA\GPA\Models\GPADataModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
