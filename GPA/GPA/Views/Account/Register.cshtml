@@ -18,18 +18,9 @@
             @Html.TextBoxFor(m => m.UserViewModel.UserName, new { @class = "form-control" })
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.UserViewModel.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.UserViewModel.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.UserViewModel.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.UserViewModel.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
+    
+   
+
     
      <div class="form-group">
         @Html.LabelFor(m => m.UserDetailViewModel.Name, new { @class = "col-md-2 control-label" })
@@ -44,11 +35,49 @@
             @Html.TextBoxFor(m => m.UserDetailViewModel.Email, new { @class = "form-control" })
         </div>
     </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserDetailViewModel.Address, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.UserDetailViewModel.Address, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserDetailViewModel.City, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.UserDetailViewModel.City, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserDetailViewModel.State, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.UserDetailViewModel.State, new { @class = "form-control" })
+        </div>
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserDetailViewModel.Zip, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.UserDetailViewModel.Zip, new { @class = "form-control" })
+        </div>
+    </div>
+     <div class="form-group">
+    @Html.LabelFor(model => model.RoleViewModel.Role, new { @class = "col-md-2 control-label" })
+         <div class="col-md-10">
+             @Html.DropDownListFor(model => model.RoleViewModel.RoleID, Model.RoleViewModel.RoleList, new { @class = "form-control" })
+         </div>
+            
+         </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Register" />
         </div>
     </div>
+    <table>
+        <tr>
+            <td></td><td></td>
+        </tr>
+    </table>
 }
 
 @section Scripts {

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -10,6 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using GPA.Models;
 using GPA.Models.Manager;
+using System.Collections.Generic;
+using GPA.DAL.Utilities;
+
 
 namespace GPA.Controllers
 {
@@ -42,7 +45,19 @@ namespace GPA.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            AccountManager am = new AccountManager();
+            RegisterViewModel registerViewModel = new RegisterViewModel();
+            RoleViewModel model = new RoleViewModel();
+            List<Role> roles = am.getRoles();
+            model.RoleList = from role in roles
+                                select new SelectListItem
+                                {
+                                    Text = role.Name,
+                                    Value = role.Id.ToString()
+                                };
+
+            registerViewModel.RoleViewModel = model;
+            return View(registerViewModel);
         }
 
         //
@@ -52,11 +67,45 @@ namespace GPA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel model)
         {
+            Helper helper = new Helper();
+            String password = helper.GenerageRandomPassword(6);
+            model.UserViewModel.Password = password;
+            model.UserViewModel.ConfirmPassword = password;
             if (ModelState.IsValid)
             {
+                
                 AccountManager accountManager = new AccountManager();
                 accountManager.RegisterUser(model);
 
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+
+
+           [AllowAnonymous]
+        public ActionResult Role()
+            
+        {
+               //AccountManager am = new AccountManager();
+               //List<Role> roles = am.getRoles();
+               //ViewBag.Roles = roles;
+            return View();
+        }
+
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Role(RoleViewModel model)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                AccountManager accountManager = new AccountManager();
+                accountManager.AddRole(model);
             }
 
             // If we got this far, something failed, redisplay form

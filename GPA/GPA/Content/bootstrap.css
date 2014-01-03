@@ -855,6 +855,7 @@ pre code {
 .col-lg-9,
 .col-lg-10,
 .col-lg-11,
+.col-md-14,
 .col-lg-12 {
   position: relative;
   min-height: 1px;
@@ -1094,6 +1095,15 @@ pre code {
   .col-md-10,
   .col-md-11 {
     float: left;
+  }
+
+  .col-md-14{
+      float:left;
+      width:90%;
+  }
+
+  .col-md-13{
+      float:right;
   }
   .col-md-1 {
     width: 8.333333333333332%;

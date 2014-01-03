@@ -21,14 +21,14 @@ namespace GPA.Models
             this.UserRoles = new HashSet<UserRole>();
         }
     
-        public int Id { get; set; }
+        public int User_ID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string VerificationCode { get; set; }
     
         public virtual ICollection<Feedback> Feedbacks { get; set; }
         public virtual ICollection<Student_GPA> Student_GPA { get; set; }
+        public virtual UserDetail UserDetail { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
-        public virtual UserDetails UserDetail { get; set; }
     }
 }

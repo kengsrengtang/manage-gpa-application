@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace GPA.Models
 {
@@ -24,7 +26,7 @@ namespace GPA.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+       // [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -50,6 +52,7 @@ namespace GPA.Models
     {
         public RegisterUserViewModel UserViewModel { get; set; }
         public RegisterUserDetailViewModel UserDetailViewModel { get; set; }
+        public RoleViewModel RoleViewModel { get; set; }
 
     }
 
@@ -59,7 +62,7 @@ namespace GPA.Models
         [Display(Name = "User name")]
         public string UserName { get; set; }
 
-        [Required]
+       
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
@@ -67,7 +70,7 @@ namespace GPA.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        //[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -92,6 +95,20 @@ namespace GPA.Models
 
         [Display(Name = "Status")]
         public int Status { get; set; }
+
+    }
+
+    public class RoleViewModel
+    {
+
+        public RoleViewModel()
+        {
+            RoleList = new  List<SelectListItem>();
+        }
+         [Display(Name = "Role name")]
+        public int RoleID { get; set; }
+        public IEnumerable<SelectListItem> RoleList { get; set; }       
+        public string Role { get; set; }
 
     }
 }
