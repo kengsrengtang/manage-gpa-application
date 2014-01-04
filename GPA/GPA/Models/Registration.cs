@@ -12,17 +12,30 @@ namespace GPA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserDetail
+    public partial class Registration
     {
-        public int UserRef_ID { get; set; }
+        public Registration()
+        {
+            this.CourseUsers = new HashSet<CourseUser>();
+            this.Feedbacks = new HashSet<Feedback>();
+            this.Feedbacks1 = new HashSet<Feedback>();
+        }
+    
+        public int RegistrationID { get; set; }
+        public string FName { get; set; }
+        public string LName { get; set; }
         public string Email { get; set; }
-        public string Name { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
-        public Nullable<int> Status { get; set; }
+        public string LandNumber { get; set; }
+        public string MobileNumber { get; set; }
+        public int UserID { get; set; }
     
+        public virtual ICollection<CourseUser> CourseUsers { get; set; }
+        public virtual ICollection<Feedback> Feedbacks { get; set; }
+        public virtual ICollection<Feedback> Feedbacks1 { get; set; }
         public virtual User User { get; set; }
     }
 }

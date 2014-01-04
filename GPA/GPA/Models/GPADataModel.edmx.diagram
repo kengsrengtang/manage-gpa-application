@@ -4,22 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="66d046b91f4b49e2a7d01d7695a1b49c" Name="Diagram1">
-        <EntityTypeShape EntityType="TestDBModel.Feedback" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestDBModel.Grade" Width="1.5" PointX="3.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestDBModel.Role" Width="1.5" PointX="3.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestDBModel.Student_GPA" Width="1.5" PointX="6" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestDBModel.Task" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestDBModel.UserDetail" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestDBModel.UserRole" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestDBModel.User" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
-        <AssociationConnector Association="TestDBModel.FK_UserFeedback" ManuallyRouted="false" />
-        <AssociationConnector Association="TestDBModel.FK_GradeStudent_GPA" ManuallyRouted="false" />
-        <AssociationConnector Association="TestDBModel.FK_RoleUserRole" ManuallyRouted="false" />
-        <AssociationConnector Association="TestDBModel.FK_UserStudent_GPA" ManuallyRouted="false" />
-        <AssociationConnector Association="TestDBModel.FK_UserDetails_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="TestDBModel.FK_UserUserRole" ManuallyRouted="false" />
-        <AssociationConnector Association="TestDBModel.RoleTask" ManuallyRouted="false" />
+      <Diagram DiagramId="08273f3b84054feaa4cd62551bb8e459" Name="Diagram1">
+        <EntityTypeShape EntityType="GPAModel.Cours" Width="1.5" PointX="9" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPAModel.CourseUser" Width="1.5" PointX="9.125" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPAModel.Grade" Width="1.5" PointX="10.875" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPAModel.Role" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPAModel.RoleTask" Width="1.5" PointX="5.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPAModel.StudentGrade" Width="1.5" PointX="10.875" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPAModel.Task" Width="1.5" PointX="4.625" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPAModel.UserRole" Width="1.5" PointX="7" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPAModel.User" Width="1.5" PointX="0.5" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="GPAModel.FK_CourseUser_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="GPAModel.FK_Student_GPACourse" ManuallyRouted="false" />
+        <AssociationConnector Association="GPAModel.FK_GradeStudent_GPA" ManuallyRouted="false" />
+        <AssociationConnector Association="GPAModel.FK_RoleTask_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="GPAModel.FK_UserRole_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="GPAModel.FK_RoleTask_Tasks" ManuallyRouted="false" />
+        <AssociationConnector Association="GPAModel.FK_UserRole_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GPAModel.Feedback" Width="1.5" PointX="4.125" PointY="3.625" />
+        <EntityTypeShape EntityType="GPAModel.Registration" Width="1.5" PointX="2.25" PointY="0.875" />
+        <AssociationConnector Association="GPAModel.FK_CourseUser_Registration" />
+        <AssociationConnector Association="GPAModel.FK_Feedbacks_RegistrationDetails" />
+        <AssociationConnector Association="GPAModel.FK_Feedbacks_Registrations" />
+        <AssociationConnector Association="GPAModel.FK_Registrations_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -16,19 +16,17 @@ namespace GPA.Models
     {
         public User()
         {
-            this.Feedbacks = new HashSet<Feedback>();
-            this.Student_GPA = new HashSet<Student_GPA>();
             this.UserRoles = new HashSet<UserRole>();
+            this.Registrations = new HashSet<Registration>();
         }
     
-        public int User_ID { get; set; }
+        public int UserID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string VerificationCode { get; set; }
+        public string Role { get; set; }
     
-        public virtual ICollection<Feedback> Feedbacks { get; set; }
-        public virtual ICollection<Student_GPA> Student_GPA { get; set; }
-        public virtual UserDetail UserDetail { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<Registration> Registrations { get; set; }
     }
 }

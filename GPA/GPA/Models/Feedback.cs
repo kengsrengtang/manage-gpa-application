@@ -14,10 +14,12 @@ namespace GPA.Models
     
     public partial class Feedback
     {
-        public int Id { get; set; }
+        public int FeedbackID { get; set; }
         public string Comment { get; set; }
-        public int UserId { get; set; }
+        public int FromID { get; set; }
+        public int ToID { get; set; }
     
-        public virtual User User { get; set; }
+        public virtual Registration Registration { get; set; }
+        public virtual Registration Registration1 { get; set; }
     }
 }

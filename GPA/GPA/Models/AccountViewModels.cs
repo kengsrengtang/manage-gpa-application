@@ -45,18 +45,24 @@ namespace GPA.Models
         public bool RememberMe { get; set; }
     }
 
+   
+
     /// <summary>
     /// Binds multiple view model
     /// </summary>
     public class RegisterViewModel
     {
-        public RegisterUserViewModel UserViewModel { get; set; }
-        public RegisterUserDetailViewModel UserDetailViewModel { get; set; }
-        public RoleViewModel RoleViewModel { get; set; }
+        public UserViewModel UserViewModel { get; set; }
+        public RegisterUserViewModel RegisterUserViewModel { get; set; }
+       // public RoleViewModel RoleViewModel { get; set; }
 
     }
+    public class AuthenticateUser
+    {
+        public bool IsUserAuthenticate { get; set; }
+    }
 
-    public class RegisterUserViewModel
+    public class UserViewModel
     {
         [Required]
         [Display(Name = "User name")]
@@ -74,15 +80,28 @@ namespace GPA.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class RegisterUserDetailViewModel
+    public class UserVerificationViewModel
     {
-        [Display(Name="Email")]
-        public string Email { get; set; }
+        [Required(ErrorMessage="Verification code is required")]
+        [Display(Name = "Enter Verification Code")]
+        public string VerificationCode { get; set; }
+    }
+
+    public class RegisterUserViewModel
+    {
+        
 
         [Required]
-        [Display(Name = "Name")]
-        public string Name { get; set; }
+        [Display(Name = "First Name")]
+        public string FName { get; set; }
 
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LName { get; set; }
+        [Required]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+         
         [Display(Name = "Address")]
         public string Address { get; set; }
 
@@ -93,8 +112,12 @@ namespace GPA.Models
         [Display(Name = "Zip")]
         public string Zip { get; set; }
 
-        [Display(Name = "Status")]
-        public int Status { get; set; }
+
+        [Display(Name = "Mobile Number")]
+        public string MobileNumber { get; set; }
+
+        [Display(Name = "Landline Number")]
+        public string LandNumber { get; set; }
 
     }
 

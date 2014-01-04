@@ -16,13 +16,13 @@ namespace GPA.Models
     {
         public Task()
         {
-            this.Roles = new HashSet<Role>();
+            this.RoleTasks = new HashSet<RoleTask>();
         }
     
         public int TaskId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
     
-        public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<RoleTask> RoleTasks { get; set; }
     }
 }

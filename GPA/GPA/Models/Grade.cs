@@ -16,13 +16,13 @@ namespace GPA.Models
     {
         public Grade()
         {
-            this.Student_GPA = new HashSet<Student_GPA>();
+            this.StudentGrades = new HashSet<StudentGrade>();
         }
     
         public int Id { get; set; }
         public string GradeScore { get; set; }
-        public string GPA { get; set; }
+        public double GradeNumber { get; set; }
     
-        public virtual ICollection<Student_GPA> Student_GPA { get; set; }
+        public virtual ICollection<StudentGrade> StudentGrades { get; set; }
     }
 }

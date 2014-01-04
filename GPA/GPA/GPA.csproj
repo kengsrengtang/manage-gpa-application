@@ -162,13 +162,21 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DAL\Utilities\Helper.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="DAL\Manager\SessionManager.cs" />
     <Compile Include="DAL\Manager\CourseManager.cs" />
     <Compile Include="DAL\Manager\StudentManager.cs" />
+    <Compile Include="DAL\Util\Helper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Cours.cs">
+      <DependentUpon>GPADataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CourseUser.cs">
+      <DependentUpon>GPADataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Feedback.cs">
       <DependentUpon>GPADataModel.tt</DependentUpon>
     </Compile>
@@ -192,19 +200,22 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="DAL\Manager\AccountManager.cs" />
+    <Compile Include="Models\Registration.cs">
+      <DependentUpon>GPADataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Role.cs">
       <DependentUpon>GPADataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Student_GPA.cs">
+    <Compile Include="Models\RoleTask.cs">
+      <DependentUpon>GPADataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StudentGrade.cs">
       <DependentUpon>GPADataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Task.cs">
       <DependentUpon>GPADataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>GPADataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserDetail.cs">
       <DependentUpon>GPADataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserRole.cs">
@@ -221,6 +232,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\GPADataModel.edmx.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ClassDiagram1.cd" />
@@ -279,6 +291,9 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Role.cshtml" />
+    <Content Include="Views\Account\LoginVerification.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Test\LoadData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
