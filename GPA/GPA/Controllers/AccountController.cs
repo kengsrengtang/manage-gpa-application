@@ -89,6 +89,7 @@ namespace GPA.Controllers
             model.UserViewModel.ConfirmPassword = password;
             if (ModelState.IsValid)
             {
+<<<<<<< HEAD
 
                 AccountManager accountManager = new AccountManager();
                 accountManager.RegisterUser(model);

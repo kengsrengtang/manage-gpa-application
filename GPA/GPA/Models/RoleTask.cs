@@ -12,13 +12,13 @@ namespace GPA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Student_GPA
+    public partial class RoleTask
     {
-        public int UserId { get; set; }
-        public int CourseId { get; set; }
-        public int GradeId { get; set; }
+        public int Id { get; set; }
+        public int RoleRef_ID { get; set; }
+        public int TaskRef_ID { get; set; }
     
-        public virtual Grade Grade { get; set; }
-        public virtual User User { get; set; }
+        public virtual Role Role { get; set; }
+        public virtual Task Task { get; set; }
     }
 }

@@ -6824,3 +6824,7 @@ td.visible-print {
     display: none !important;
   }
 }
+
+footer{
+    text-align:center;
+}

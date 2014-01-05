@@ -13,10 +13,10 @@ namespace GPA.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TestDBEntities : DbContext
+    public partial class GPAEntities : DbContext
     {
-        public TestDBEntities()
-            : base("name=TestDBEntities")
+        public GPAEntities()
+            : base("name=GPAEntities")
         {
         }
     
@@ -25,12 +25,15 @@ namespace GPA.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Cours> Courses { get; set; }
+        public virtual DbSet<CourseUser> CourseUsers { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<Grade> Grades { get; set; }
+        public virtual DbSet<Registration> Registrations { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<Student_GPA> Student_GPA { get; set; }
+        public virtual DbSet<RoleTask> RoleTasks { get; set; }
+        public virtual DbSet<StudentGrade> StudentGrades { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
-        public virtual DbSet<UserDetail> UserDetails { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }

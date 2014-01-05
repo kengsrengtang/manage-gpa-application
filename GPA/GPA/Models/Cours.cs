@@ -12,21 +12,21 @@ namespace GPA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Cours
     {
-        public User()
+        public Cours()
         {
-            this.Registrations = new HashSet<Registration>();
-            this.UserRoles = new HashSet<UserRole>();
+            this.CourseUsers = new HashSet<CourseUser>();
+            this.StudentGrades = new HashSet<StudentGrade>();
         }
     
-        public int UserID { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string VerificationCode { get; set; }
-        public string Role { get; set; }
+        public int Id { get; set; }
+        public string SubCode { get; set; }
+        public string Level { get; set; }
+        public string CourseName { get; set; }
+        public int Credit { get; set; }
     
-        public virtual ICollection<Registration> Registrations { get; set; }
-        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<CourseUser> CourseUsers { get; set; }
+        public virtual ICollection<StudentGrade> StudentGrades { get; set; }
     }
 }

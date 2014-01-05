@@ -6,7 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.Security;
 
-namespace GPA.DAL.Utilities
+namespace GPA.DAL.Util
 {
     public class Helper
     {
@@ -15,7 +15,7 @@ namespace GPA.DAL.Utilities
             UnicodeEncoding AE = new UnicodeEncoding();
             //string sha1 = FormsAuthentication.HashPasswordForStoringInConfigFile(password, "sha1");
             return CalculateSha1(password, AE);
-            
+
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace GPA.DAL.Utilities
         /// <param name="text">input string</param>
         /// <param name="enc">Character encoding</param>
         /// <returns>SHA1 hash</returns>
-        public  string CalculateSha1(string text, Encoding enc)
+        public string CalculateSha1(string text, Encoding enc)
         {
             byte[] buffer = enc.GetBytes(text);
             SHA1CryptoServiceProvider cryptoTransformSha1 =
@@ -42,7 +42,7 @@ namespace GPA.DAL.Utilities
             while (0 < length--)
                 res += valid[rnd.Next(valid.Length)];
             return res;
-           
+
         }
 
         public string GenerageVerificationCode(int length)

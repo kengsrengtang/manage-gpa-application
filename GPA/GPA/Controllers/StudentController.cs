@@ -12,12 +12,12 @@ namespace GPA.Controllers
 {
     public class StudentController : Controller
     {
-        private TestDBEntities db = new TestDBEntities();
+        private GPAEntities db = new GPAEntities();
 
         // GET: /Student/
         public ActionResult Index()
         {
-            var users = db.Users.Include(u => u.UserDetail);
+            var users = db.Users.Include(u => u.Registrations);
             return View(users.ToList());
         }
 
@@ -39,7 +39,7 @@ namespace GPA.Controllers
         // GET: /Student/Create
         public ActionResult Create()
         {
-            ViewBag.User_ID = new SelectList(db.UserDetails, "UserRef_ID", "Email");
+            ViewBag.User_ID = new SelectList(db.Registrations, "UserRef_ID", "Email");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace GPA.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.User_ID = new SelectList(db.UserDetails, "UserRef_ID", "Email", user.User_ID);
+            ViewBag.User_ID = new SelectList(db.Registrations, "UserRef_ID", "Email", user.UserID);
             return View(user);
         }
 
@@ -73,7 +73,7 @@ namespace GPA.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.User_ID = new SelectList(db.UserDetails, "UserRef_ID", "Email", user.User_ID);
+            ViewBag.User_ID = new SelectList(db.Registrations, "UserRef_ID", "Email", user.UserID);
             return View(user);
         }
 
@@ -90,7 +90,7 @@ namespace GPA.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.User_ID = new SelectList(db.UserDetails, "UserRef_ID", "Email", user.User_ID);
+            ViewBag.User_ID = new SelectList(db.Registrations, "UserRef_ID", "Email", user.UserID);
             return View(user);
         }
 

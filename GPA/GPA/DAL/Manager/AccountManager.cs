@@ -3,78 +3,143 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using GPA.DAL;
-using GPA.DAL.Utilities;
+using GPA.DAL.Util;
+
 
 namespace GPA.Models.Manager
 {
     public class AccountManager
     {
 
-        public void RegisterUser(RegisterViewModel model)
+        public void RegisterUser(RegisterViewModel model,int userId)
         {
 
-            using (var db = new TestDBEntities())
+            using (var db = new GPAEntities())
             {
-                Helper helper = new Helper();
-                User user = new User();
-                user.Password = helper.EncryptPassword(model.UserViewModel.Password);
-                //TODO send password and verification code to the user
-                user.UserName = model.UserViewModel.UserName;
-                user.VerificationCode = helper.GenerageVerificationCode(3);
-
-                UserDetail userDetails = new UserDetail();
-                userDetails.Email = model.UserDetailViewModel.Email;
-                userDetails.Name = model.UserDetailViewModel.Name;
-                userDetails.Address = model.UserDetailViewModel.Address;
-                userDetails.City = model.UserDetailViewModel.City;
-                userDetails.State = model.UserDetailViewModel.State;
-                userDetails.Zip = model.UserDetailViewModel.Zip;
-               
-                user.UserDetail = userDetails;
-
-                db.Users.Add(user);
+                Registration user = new Registration();
+                user.FName = model.RegisterUserViewModel.FName;
+                user.LName = model.RegisterUserViewModel.LName;
+                user.Email = model.RegisterUserViewModel.Email;
+                user.Address = model.RegisterUserViewModel.Address;
+                user.City = model.RegisterUserViewModel.City;
+                user.Zip = model.RegisterUserViewModel.Zip;
+                user.LandNumber = model.RegisterUserViewModel.LandNumber;
+                user.MobileNumber = model.RegisterUserViewModel.MobileNumber;
+                user.UserID = userId;
+                db.Registrations.Add(user);
                 db.SaveChanges();
 
 
-                int id = user.User_ID;
-                UserRole ur = new UserRole();
-                ur.RoleId = model.RoleViewModel.RoleID;
-                ur.UserId = id;
-                ur.Status = true;
-                db.UserRoles.Add(ur);
-                db.SaveChanges();
 
             }
         }
 
-        public List<Role> getRoles()
+      
+        public bool ValidateUser(LoginViewModel model, out User user)
         {
-
-
-
-            using (var db = new TestDBEntities())
+            //LoginViewModel
+            String userName = model.UserName;
+            String password = model.Password;
+            Helper helper = new Helper();
+            user = null;
+            String epassword = helper.EncryptPassword(password);
+            using (var db = new GPAEntities())
             {
-                var roles = from b in db.Roles
-                            select b;
-                return roles.ToList();
+                var _user = db.Users.Where(r => r.UserName == userName && r.Password == epassword).SingleOrDefault();              
+                  
+                if (_user!= null)
+                {
+                    user = _user;
+                    return true;
+                }                    
+                else
+                {
+                    return false;
+                }
+                   
             }
 
 
         }
 
-        public void AddRole(RoleViewModel model)
+        public Boolean IsUserRegistered(User user)
         {
-
-            using (var db = new TestDBEntities())
+            Boolean flag = false;
+            using (var db = new GPAEntities())
             {
+                var userRegistraion = db.Registrations.Where(r => r.UserID == user.UserID).SingleOrDefault();
+                if (userRegistraion != null)
+                {
+                    flag = true;
+                }
+                else
 
-                Role role = new Role();
-                role.Name = model.Role;
-                db.Roles.Add(role);
+                    flag = false;
+
+            }
+            return flag;
+        }
+
+        public void InsertTestData()
+        {
+           
+            Helper helper = new Helper();
+            User dil = new User();
+            dil.UserName = "Dil";
+            dil.Password = helper.EncryptPassword(dil.UserName+"123");
+            dil.Role = "Admin";
+            String v1 = helper.GenerageVerificationCode(4);
+            dil.VerificationCode = v1;
+
+            User laxman = new User();
+            laxman.UserName = "Laxman";
+            laxman.Password = helper.EncryptPassword(laxman.UserName+"123");
+            laxman.Role = "Staff";
+            String v2 = helper.GenerageVerificationCode(4);
+            laxman.VerificationCode = v2;
+
+            List<User> users = new List<User>();
+            users.Add(dil);
+            users.Add(laxman);
+            using (var db = new GPAEntities())
+            {
+                db.Users.AddRange(users);
                 db.SaveChanges();
+            }
+
+        }
+
+        public String GetUserVerificationCode(int userId)
+        {
+            string verification = "";
+            using (var db = new GPAEntities())
+            {
+                verification = db.Users.Where(r => r.UserID == userId).Select(s => s.VerificationCode).Single();
 
             }
+
+            return verification;
+
         }
+
+        //public Role GetCurrentRole(User user)
+        //{
+        //    dynamic role;
+        //    using (var db = new TestDBEntities())
+        //    {
+        //        var roles = db.UserRoles.Where(r => r.UserId == user.Id).ToList();
+        //        int roleid = roles[0].RoleId;
+        //        role = db.Roles.Where(r => r.Id == roleid).Single();
+        //    }
+
+        //    return role;
+
+        //}
+
+
+
+
+
 
 
     }
