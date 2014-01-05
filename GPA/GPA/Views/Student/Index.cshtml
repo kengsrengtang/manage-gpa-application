@@ -20,9 +20,9 @@
         <th>
             @Html.DisplayNameFor(model => model.VerificationCode)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserDetail.Email)
-        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.)
+        </th>*@
         <th></th>
     </tr>
 
@@ -37,13 +37,13 @@
         <td>
             @Html.DisplayFor(modelItem => item.VerificationCode)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.UserDetail.Email)
-        </td>
+        </td>*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.User_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.User_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.User_ID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserID })
         </td>
     </tr>
 }

@@ -37,6 +37,7 @@ namespace GPA.Models
         public string UserName { get; set; }
 
         [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -83,6 +84,7 @@ namespace GPA.Models
     public class UserVerificationViewModel
     {
         [Required(ErrorMessage="Verification code is required")]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
         [Display(Name = "Enter Verification Code")]
         public string VerificationCode { get; set; }
     }

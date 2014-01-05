@@ -34,35 +34,7 @@ namespace GPA.Models.Manager
             }
         }
 
-        //public List<Role> getRoles()
-        //{
-
-
-
-        //    using (var db = new TestDBEntities())
-        //    {
-        //        var roles = from b in db.Roles
-        //                    select b;
-        //        return roles.ToList();
-        //    }
-
-
-        //}
-
-        //public void AddRole(RoleViewModel model)
-        //{
-
-        //    using (var db = new TestDBEntities())
-        //    {
-
-        //        Role role = new Role();
-        //        role.Name = model.Role;
-        //        db.Roles.Add(role);
-        //        db.SaveChanges();
-
-        //    }
-        //}
-
+      
         public bool ValidateUser(LoginViewModel model, out User user)
         {
             //LoginViewModel
@@ -114,15 +86,17 @@ namespace GPA.Models.Manager
             Helper helper = new Helper();
             User dil = new User();
             dil.UserName = "Dil";
-            dil.Password = helper.EncryptPassword(dil.UserName);
+            dil.Password = helper.EncryptPassword(dil.UserName+"123");
             dil.Role = "Admin";
-            dil.VerificationCode = helper.GenerageVerificationCode(4);
+            String v1 = helper.GenerageVerificationCode(4);
+            dil.VerificationCode = v1;
 
             User laxman = new User();
             laxman.UserName = "Laxman";
-            laxman.Password = helper.EncryptPassword(laxman.UserName);
+            laxman.Password = helper.EncryptPassword(laxman.UserName+"123");
             laxman.Role = "Staff";
-            laxman.VerificationCode = helper.GenerageVerificationCode(4);
+            String v2 = helper.GenerageVerificationCode(4);
+            laxman.VerificationCode = v2;
 
             List<User> users = new List<User>();
             users.Add(dil);

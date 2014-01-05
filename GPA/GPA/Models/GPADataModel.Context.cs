@@ -27,14 +27,14 @@ namespace GPA.Models
     
         public virtual DbSet<Cours> Courses { get; set; }
         public virtual DbSet<CourseUser> CourseUsers { get; set; }
+        public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<Grade> Grades { get; set; }
+        public virtual DbSet<Registration> Registrations { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<RoleTask> RoleTasks { get; set; }
         public virtual DbSet<StudentGrade> StudentGrades { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Feedback> Feedbacks { get; set; }
-        public virtual DbSet<Registration> Registrations { get; set; }
     }
 }
