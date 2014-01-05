@@ -6,8 +6,8 @@
 
 <h2>@ViewBag.Title.</h2>
 <div class="row">
-    <div class="col-md-8 center">
-        <section id="loginForm" >
+    <div class="col-md-8">
+        <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
@@ -42,16 +42,17 @@
                     </div>
                 </div>
                 <p>
-                    <span style="color:#88c10d"> If you don't have user id/password contact administration !!!</span>
+                    @Html.ActionLink("Register", "Register") if you don't have a local account.
+                    @Html.ActionLink("Setting", "ApplicationSetting") .
                 </p>
             }
         </section>
     </div>
-    @*<div class="col-md-4">
+    <div class="col-md-4">
         <section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
         </section>
-    </div>*@
+    </div>
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
