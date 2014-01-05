@@ -40,6 +40,22 @@ namespace GPA.Controllers
             return View();
         }
 
+       
+        [AllowAnonymous]
+        public ActionResult ApplicationSetting()
+        {
+            ApplicationSettingViewModel asvm = new ApplicationSettingViewModel();            
+            return View(asvm);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult ApplicationSetting(ApplicationSettingViewModel asvm)
+        {
+            Properties.Settings.Default.Save();
+
+            return View(asvm);
+        }
 
         // GET: /Account/Register
         [AllowAnonymous]
@@ -50,11 +66,11 @@ namespace GPA.Controllers
             RoleViewModel model = new RoleViewModel();
             List<Role> roles = am.getRoles();
             model.RoleList = from role in roles
-                                select new SelectListItem
-                                {
-                                    Text = role.Name,
-                                    Value = role.Id.ToString()
-                                };
+                             select new SelectListItem
+                             {
+                                 Text = role.Name,
+                                 Value = role.Id.ToString()
+                             };
 
             registerViewModel.RoleViewModel = model;
             return View(registerViewModel);
@@ -73,7 +89,7 @@ namespace GPA.Controllers
             model.UserViewModel.ConfirmPassword = password;
             if (ModelState.IsValid)
             {
-                
+
                 AccountManager accountManager = new AccountManager();
                 accountManager.RegisterUser(model);
 
@@ -85,13 +101,12 @@ namespace GPA.Controllers
 
 
 
-           [AllowAnonymous]
+        [AllowAnonymous]
         public ActionResult Role()
-            
         {
-               //AccountManager am = new AccountManager();
-               //List<Role> roles = am.getRoles();
-               //ViewBag.Roles = roles;
+            //AccountManager am = new AccountManager();
+            //List<Role> roles = am.getRoles();
+            //ViewBag.Roles = roles;
             return View();
         }
 
@@ -101,7 +116,7 @@ namespace GPA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Role(RoleViewModel model)
         {
-            
+
             if (ModelState.IsValid)
             {
                 AccountManager accountManager = new AccountManager();

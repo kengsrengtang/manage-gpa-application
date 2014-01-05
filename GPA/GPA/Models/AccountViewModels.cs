@@ -29,6 +29,47 @@ namespace GPA.Models
        // [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+    public class ApplicationSettingViewModel
+    {
+        [Display(Name = "SMTPServerName")]
+        public string SMTPServerName
+        {
+            get { return Properties.Settings.Default.SMTPServerName; }
+            set
+            {
+                Properties.Settings.Default.SMTPServerName = value;
+            }
+        }
+
+        [Display(Name = "SMTPServerPort")]
+        public string SMTPServerPort
+        {
+            get { return Properties.Settings.Default.SMTPServerPort; }
+            set
+            {
+                Properties.Settings.Default.SMTPServerPort = value;               
+            }
+        }
+        [Display(Name = "SMTPUser")]
+        public string SMTPUser
+        {
+            get { return Properties.Settings.Default.SMTPUser; }
+            set
+            {
+                Properties.Settings.Default.SMTPUser = value;
+            }
+        }
+        [Display(Name = "SMTPPass")]
+        public string SMTPPass
+        {
+            get { return Properties.Settings.Default.SMTPPass; }
+            set
+            {
+                Properties.Settings.Default.SMTPPass = value;
+            }
+        }
+        
+    }
 
     public class LoginViewModel
     {
