@@ -12,7 +12,6 @@ namespace GPA.Models
 
         [Display(Name = "Feedback")]
         public string Message { get; set; }
-
         [Display(Name = "To")]
         public List<Registration> UserList { get; set; }       
         public int ToId { get; set; }

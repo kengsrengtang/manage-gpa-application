@@ -18,6 +18,7 @@ namespace GPA.Models
         public string Comment { get; set; }
         public int FromID { get; set; }
         public int ToID { get; set; }
+        public string Subject { get; set; }
     
         public virtual Registration Registration { get; set; }
         public virtual Registration Registration1 { get; set; }

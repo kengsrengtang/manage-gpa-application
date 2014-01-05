@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="GPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Courses">
           <Key>
             <PropertyRef Name="Id" />
@@ -31,6 +31,7 @@
           <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
           <Property Name="FromID" Type="int" Nullable="false" />
           <Property Name="ToID" Type="int" Nullable="false" />
+          <Property Name="Subject" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Grades">
           <Key>
@@ -296,8 +297,7 @@
             <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GPAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -322,17 +322,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Cours" Relationship="Self.FK_CourseUser_Courses" FromRole="CourseUser" ToRole="Courses" />
           <NavigationProperty Name="Registration" Relationship="Self.FK_CourseUser_Registration" FromRole="CourseUser" ToRole="Registrations" />
-        </EntityType>
-        <EntityType Name="Feedback">
-          <Key>
-            <PropertyRef Name="FeedbackID" />
-          </Key>
-          <Property Name="FeedbackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FromID" Type="Int32" Nullable="false" />
-          <Property Name="ToID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Registration" Relationship="Self.FK_Feedbacks_RegistrationDetails" FromRole="Feedbacks" ToRole="Registrations" />
-          <NavigationProperty Name="Registration1" Relationship="Self.FK_Feedbacks_Registrations" FromRole="Feedbacks" ToRole="Registrations" />
         </EntityType>
         <EntityType Name="Grade">
           <Key>
@@ -359,9 +348,9 @@
           <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CourseUsers" Relationship="Self.FK_CourseUser_Registration" FromRole="Registrations" ToRole="CourseUser" />
-          <NavigationProperty Name="Feedbacks" Relationship="Self.FK_Feedbacks_RegistrationDetails" FromRole="Registrations" ToRole="Feedbacks" />
-          <NavigationProperty Name="Feedbacks1" Relationship="Self.FK_Feedbacks_Registrations" FromRole="Registrations" ToRole="Feedbacks" />
           <NavigationProperty Name="User" Relationship="Self.FK_Registrations_Users" FromRole="Registrations" ToRole="Users" />
+          <NavigationProperty Name="Feedbacks" Relationship="GPAModel.FK_Feedbacks_RegistrationDetails" FromRole="Registration" ToRole="Feedback" />
+          <NavigationProperty Name="Feedbacks1" Relationship="GPAModel.FK_Feedbacks_Registrations" FromRole="Registration" ToRole="Feedback" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -461,30 +450,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Feedbacks_RegistrationDetails">
-          <End Role="Registrations" Type="Self.Registration" Multiplicity="1" />
-          <End Role="Feedbacks" Type="Self.Feedback" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Registrations">
-              <PropertyRef Name="RegistrationID" />
-            </Principal>
-            <Dependent Role="Feedbacks">
-              <PropertyRef Name="FromID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Feedbacks_Registrations">
-          <End Role="Registrations" Type="Self.Registration" Multiplicity="1" />
-          <End Role="Feedbacks" Type="Self.Feedback" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Registrations">
-              <PropertyRef Name="RegistrationID" />
-            </Principal>
-            <Dependent Role="Feedbacks">
-              <PropertyRef Name="ToID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_GradeStudent_GPA">
           <End Role="Grades" Type="Self.Grade" Multiplicity="1" />
           <End Role="StudentGrade" Type="Self.StudentGrade" Multiplicity="*" />
@@ -560,7 +525,6 @@
         <EntityContainer Name="GPAEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Courses" EntityType="Self.Cours" />
           <EntitySet Name="CourseUsers" EntityType="Self.CourseUser" />
-          <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
           <EntitySet Name="Grades" EntityType="Self.Grade" />
           <EntitySet Name="Registrations" EntityType="Self.Registration" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
@@ -580,14 +544,6 @@
           <AssociationSet Name="FK_CourseUser_Registration" Association="Self.FK_CourseUser_Registration">
             <End Role="Registrations" EntitySet="Registrations" />
             <End Role="CourseUser" EntitySet="CourseUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Feedbacks_RegistrationDetails" Association="Self.FK_Feedbacks_RegistrationDetails">
-            <End Role="Registrations" EntitySet="Registrations" />
-            <End Role="Feedbacks" EntitySet="Feedbacks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Feedbacks_Registrations" Association="Self.FK_Feedbacks_Registrations">
-            <End Role="Registrations" EntitySet="Registrations" />
-            <End Role="Feedbacks" EntitySet="Feedbacks" />
           </AssociationSet>
           <AssociationSet Name="FK_GradeStudent_GPA" Association="Self.FK_GradeStudent_GPA">
             <End Role="Grades" EntitySet="Grades" />
@@ -613,7 +569,52 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="UserRole" EntitySet="UserRoles" />
           </AssociationSet>
+          <EntitySet Name="Feedbacks" EntityType="GPAModel.Feedback" />
+          <AssociationSet Name="FK_Feedbacks_RegistrationDetails" Association="GPAModel.FK_Feedbacks_RegistrationDetails">
+            <End Role="Registration" EntitySet="Registrations" />
+            <End Role="Feedback" EntitySet="Feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedbacks_Registrations" Association="GPAModel.FK_Feedbacks_Registrations">
+            <End Role="Registration" EntitySet="Registrations" />
+            <End Role="Feedback" EntitySet="Feedbacks" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="FeedbackID" />
+          </Key>
+          <Property Name="FeedbackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comment" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FromID" Type="Int32" Nullable="false" />
+          <Property Name="ToID" Type="Int32" Nullable="false" />
+          <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Registration" Relationship="GPAModel.FK_Feedbacks_RegistrationDetails" FromRole="Feedback" ToRole="Registration" />
+          <NavigationProperty Name="Registration1" Relationship="GPAModel.FK_Feedbacks_Registrations" FromRole="Feedback" ToRole="Registration" />
+        </EntityType>
+        <Association Name="FK_Feedbacks_RegistrationDetails">
+          <End Type="GPAModel.Registration" Role="Registration" Multiplicity="1" />
+          <End Type="GPAModel.Feedback" Role="Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="RegistrationID" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="FromID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedbacks_Registrations">
+          <End Type="GPAModel.Registration" Role="Registration" Multiplicity="1" />
+          <End Type="GPAModel.Feedback" Role="Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="RegistrationID" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="ToID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -637,16 +638,6 @@
                 <ScalarProperty Name="Courses_Id" ColumnName="Courses_Id" />
                 <ScalarProperty Name="Users_Id" ColumnName="Users_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Feedbacks">
-            <EntityTypeMapping TypeName="GPAModel.Feedback">
-              <MappingFragment StoreEntitySet="Feedbacks">
-                <ScalarProperty Name="FeedbackID" ColumnName="FeedbackID" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="FromID" ColumnName="FromID" />
-                <ScalarProperty Name="ToID" ColumnName="ToID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -729,6 +720,17 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="VerificationCode" ColumnName="VerificationCode" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedbacks">
+            <EntityTypeMapping TypeName="GPAModel.Feedback">
+              <MappingFragment StoreEntitySet="Feedbacks">
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="ToID" ColumnName="ToID" />
+                <ScalarProperty Name="FromID" ColumnName="FromID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="FeedbackID" ColumnName="FeedbackID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
